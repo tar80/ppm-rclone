@@ -1,0 +1,37 @@
+﻿PPM_PLUGIN_NAME=ppm-rclone
+
+#Plugin version
+VERSION=1.0
+
+#Requires ppm version
+PPM_VERSION=0.92
+
+#Requires PPx version
+PPX_VERSION=19105
+
+#Requires PPx Script Module version
+SCRIPT_VERSION=19
+
+#Requires external executables. Separated dy commas
+EXECUTABLES=
+
+#Requires PPx Modules and Common Archivers Library. Separated dy commas
+MODULES=ppxkey
+
+#Comma separated dependent plugins. Just a note
+DEPENDENCIES=rclone.exe, ls2lf.exe
+
+#CodeType permisson. 0:No restriction | 1:Not use multiByte | 2:Not use unicode
+CODETYPE_PERMISSION=1
+
+#ScriptType permisson. 0:No restriction | 1:JS9(5.7) | 2:JS9(5.8) | 3:JS9(ES5) | 4:Chakra(ES6)
+SCRIPTTYPE_PERMISSION=0
+
+#To copy files in the Sheet directory. true | false
+COPY_FLAG=false
+
+#To copy files in the Userscript directory. true | false
+COPY_SCRIPT=false
+
+#Copy by specifying the directory-name
+SPECIFIC_COPY_DIR=

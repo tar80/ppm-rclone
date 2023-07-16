@@ -14,6 +14,7 @@
 'use strict';
 
 /* Import modules */
+/** @type {!any} */
 const st = PPx.CreateObject('ADODB.stream');
 //@ts-ignore
 let module = function (filepath) {
@@ -26,6 +27,8 @@ let module = function (filepath) {
 
   return Function(' return ' + data)();
 };
+/** @type {!any} */
+const fso = PPx.CreateObject('Scripting.FileSystemObject');
 const util = module(PPx.Extract('%*getcust(S_ppm#global:module)\\util.js'));
 const rc = module(PPx.Extract('%*getcust(S_ppm#plugins:ppm-rclone)\\script\\module\\rc.js'));
 //@ts-ignore
@@ -48,7 +51,7 @@ module = null;
 
 /**
  * @param {any} args - PPx.Arguments
- * @return {args}
+ * @return {{async: string, decrypt: string, spin: string}}
  */
 const adjustArg = (args) => {
   const arr = ['0', '0', '0'];
@@ -97,6 +100,7 @@ const hasPPb = (ppcid) => {
 
 /**
  * @param {string} decrypt
+ * @return {boolean} - Error occured
  */
 const errorHandling = (decrypt) => {
   const errorcode = PPx.getProcessValue(rc.name.err);
@@ -104,16 +108,18 @@ const errorHandling = (decrypt) => {
   PPx.setProcessValue(rc.name.err, '');
 
   if (errorcode === '0') {
-    return;
+    return false;
   }
 
   if (decrypt !== '0') {
     PPx.setValue(rc.name.pw, '');
   }
 
-  const msg = errorcode === 1 ? rc.mes.cancel : rc.mes.error;
+  const msg = errorcode === '1' ? rc.mes.cancel : rc.mes.error;
 
-  PPx.setPopLineMessage(`!"${msg}`);
+  PPx.SetPopLineMessage(`!"${msg}`);
+
+  return true;
 };
 
 /**
@@ -211,19 +217,9 @@ const rcloneAsync = (args, data, passcmd) => {
 const setRootpath = (ppcid, root) => PPx.Execute(`*execute ${ppcid},*string i,RootPath=${root}`);
 
 /**
- * @param {string} path - Path of cached ListFile
- * return {boolean} - Whether the path is exist
- */
-const fileExists = (path) => {
-  const fso = PPx.CreateObject('Scripting.FileSystemObject');
-
-  return fso.FileExists(path);
-};
-
-/**
  * @param {string} async
  * @param {string} path - Path of cached ListFile
- * @return {boolean} fileExists
+ * @return {boolean} - whether the file exists
  */
 const isAsync = (async, path) => {
   if (async === '0') {
@@ -238,7 +234,7 @@ const isAsync = (async, path) => {
     return false;
   }
 
-  return fileExists(path);
+  return fso.FileExists(path);
 };
 
 /* Main */

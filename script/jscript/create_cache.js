@@ -12,6 +12,7 @@
  */
 
 /* Import modules */
+/** @type {!any} */
 var st = PPx.CreateObject('ADODB.stream');
 //@ts-ignore
 var module = function (filepath) {
@@ -24,6 +25,8 @@ var module = function (filepath) {
 
   return Function(' return ' + data)();
 };
+/** @type {!any} */
+var fso = PPx.CreateObject('Scripting.FileSystemObject');
 var util = module(PPx.Extract('%*getcust(S_ppm#global:module)\\util.js'));
 var rc = module(PPx.Extract('%*getcust(S_ppm#plugins:ppm-rclone)\\script\\module\\rc.js'));
 //@ts-ignore
@@ -46,7 +49,7 @@ module = null;
 
 /**
  * @param {any} args - PPx.Arguments
- * @return {args}
+ * @return {{async: string, decrypt: string, spin: string}}
  */
 var adjustArg = function (args) {
   var arr = ['0', '0', '0'];
@@ -120,9 +123,9 @@ var errorHandling = function (decrypt) {
     PPx.setValue(rc.name.pw, '');
   }
 
-  var msg = errorcode === 1 ? rc.mes.cancel : rc.mes.error;
+  var msg = errorcode === '1' ? rc.mes.cancel : rc.mes.error;
 
-  PPx.setPopLineMessage('!"' + msg);
+  PPx.SetPopLineMessage('!"' + msg);
 
   return true;
 };
@@ -225,19 +228,9 @@ var setRootpath = function (ppcid, root) {
 };
 
 /**
- * @param {string} path - Path of cached ListFile
- * return {boolean} - Whether the path is exist
- */
-var fileExists = function (path) {
-  var fso = PPx.CreateObject('Scripting.FileSystemObject');
-
-  return fso.FileExists(path);
-};
-
-/**
  * @param {string} async
  * @param {string} path - Path of cached ListFile
- * @return {boolean} fileExists
+ * @return {boolean} - whether the file exists
  */
 var isAsync = function (async, path) {
   if (async === '0') {
@@ -252,7 +245,7 @@ var isAsync = function (async, path) {
     return false;
   }
 
-  return fileExists(path);
+  return fso.FileExists(path);
 };
 
 /* Main */

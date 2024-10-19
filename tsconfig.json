@@ -1,0 +1,9 @@
+{
+  "extends": "@ppmdev/tsconfigs/base",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "baseUrl": "."
+  },
+  "include": ["src/**/*"],
+  "exclude": ["__tests__", "__mocks__", "*.spec.ts", "*.test.ts"]
+}

@@ -10,4 +10,3 @@ aux:パスにオンラインストレージ上の項目を展開します。
 ```text
 remote 'tar80/ppm-rclone'
 ```
-

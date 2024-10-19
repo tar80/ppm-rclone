@@ -10,33 +10,53 @@ rcloneを利用し、オンラインストレージ上のファイルをaux:パ�
 ===============================================================================
 動作環境
 
-	rclone、ls2lf(ppxaux06)が必要です。
+	rclone.exe、ls2lf(ppxaux06)が必要です。
 
 ===============================================================================
 構成ファイルの説明
 
-	script\module\rc.js		モジュールスクリプト
-	script\change_modtime.js	カーソル下エントリの更新時刻を変更
-	script\create_cache.js		rcloneの出力からaux:パスリストを作成
-	script\view_contents.js		カーソル下エントリをPPvの標準入力に送る
+	dist\alignPPb.js		PPbを整列
+	dist\fileOperator.js		ファイル操作のハブスクリプト
+	dist\inputRclone.js		Rcloneコマンド実行用一行編集を起動
+	dist\setEncryptionValue.js	Rclone設定ファイルの暗号化状態を検出し
+		S_ppm#user:rc_encryptに値を設定
+	dist\updateEntries.js		ファイル操作実行後にエントリリストを更新
+	dist\workerRclone.stay.js	ワーカスクリプト
 
 ===============================================================================
 テーブル情報
 
+	S_ppm#staymode	workerRcloneのインスタンス番号
 	S_auxRCLONE	aux:パスの設定
+	M_auxRClone	aux://S_auxRCLONE用のメニュー設定
 	K_ppmRclone	aux://S_auxRCLONE用のキー設定
 
 ===============================================================================
-デフォルトキー設定
+デフォルトキー設定 ※()で括られたキーはコメントアウト
 
-	PPc
-		M	移動
-		C	コピー
-		D	削除
-		R	リネーム
-		K	ディレクトリ作成
-		A	更新時刻変更
-		V	エントリをPPvの標準入力で開く
+PPc
+	M	移動
+	C	コピー
+	D	削除
+	R	リネーム
+	K	ディレクトリ作成
+	A	更新時刻変更
+	V	エントリをPPvの標準入力で開く
+	PAUSE	実行中のRcloneコマンドを中断
+	F5	エントリリストを更新
+	ENTER	ディレクトリ移動
+
+===============================================================================
+デフォルトメニュー設定
+
+&Rclone		Rcloneコマンド補完一行編集
+&Focus PPb	PPbをフォーカス
+--
+&Align PPb	PPbを指定した位置に整列
+--
+&Edit config		Rclone設定ファイルをPPbで編集
+&Encryption set		Rclone設定ファイルを暗号化
+&Encryption remove	Rclone設定ファイルの暗号化を解除
 
 ===============================================================================
 vim:tw=79:ts=8:sts=0:sw=4:norl:noet:fen:

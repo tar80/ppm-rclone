@@ -1,0 +1,137 @@
+about  ;<remote:> ドライブ情報を取得
+authorize ;[flags] 認証トークンの登録
+backend ;<command> <remote:path> [opts] <args> [flags] バックエンド固有コマンド実行
+	help  ;<remote:> 固有コマンドのヘルプ
+	features  ;<remote:> バックエンド情報
+bisync  ;<remote1:path1> <remote2:path2> [flags] 双方向同期
+cat ;<remote:path/to/file> [flags] ファイル内容を標準出力
+	--include  ;"<stringArray>" ワイルドカードで抽出
+check ;<source:path> <dest:path> [flags] サイズとハッシュを比較
+	--size-only ;サイズのみ比較
+	--one-way ;ソースのみチェック
+checksum ;<hash> <sumfile> <dst:path> [flags] 宛先のハッシュサムをsumfileと比較
+	--size-only ;サイズのみ比較
+	--one-way ;ソースのみチェック
+cleanup ;<remote:path> [flags] ゴミ箱、古いファイルバージョンを削除
+	--dry-run ;試行
+	--interactive ;対話モード
+completion  ;<bash|fish|PowerShell|zsh> シェル補完スクリプトを生成
+config ;<subcmd> [flags] 設定ファイル操作
+	cleate  ;<name> [flags] 新規ドライブ
+	delete  ;<name> [flags] ドライブ削除
+	disconnect  ;<remote:> 認証トークンを破棄
+	dump ;設定ファイルをJSON形式で出力
+	edit ;[flags] 対話形式で編集
+	encryption  ;<set|remove|check> 設定ファイルの暗号化
+	file ;設定ファイルのパスを取得
+	password  ;<myremote> <fieldname=password> 既存のパスワードを更新
+	paths ;各種ファイルパスを取得
+	providers ;登録可能プロバイダ情報
+	reconnect  ;<remote:> 認証トークンを再生成
+	redacted  ;<remote:> 複合化したドライブ情報を取得(機密情報を隠蔽)
+	show  ;<remote:> 複合化したドライブ情報を取得
+	touch ;設定ファイルの存在確認
+	update  ;<myremote> <fieldname=value> 既存のリモートオプションを更新
+	userinfo  ;<remote:> ログインしたユーザーの情報を取得
+copy  ;<source:sourcepath> <dest:destpath> ソース(配下)を宛先にコピー
+copyto  ;<src> <dest> ソースを宛先にコピー
+copyurl  ;<url> <dest:path> [flag] URLのコンテンツをコピー
+	--auto-filename ;リダイレクト後のファイル名を取得
+	--header-filename ;ヘッダかファイル名を取得
+	--no-clobber ;同名ファイルの上書き禁止
+cryptcheck  ;<source:path> <encryptedremote:path> 暗号化ファイルのチェックサムを比較
+	--size-only ;サイズのみ比較
+	--one-way ;ソースのみチェック
+cryptdecode  ;<encryptedremote:> <encryptedfilename1> <encryptedfilename2> 暗号化解除したファイル名を取得
+	--reverse ;暗号化したファイル名を取得
+dedupe ;[mode] <remote:path> [flags] 重複したパスを対話的に編集
+	skip ;同一ファイルを削除、残りをスキップ
+	first ;同一ファイルを削除、最初のファイルを保持
+	newest ;同一ファイルを削除、最新のファイルを保持
+	oldest ;同一ファイルを削除、再古のファイルを保持
+	largest ;同一ファイルを削除、最大サイズを保持
+	smallest ;同一ファイルを削除、最小サイズを保持
+	list ;リストを出力
+	--dy-hash ;同一ハッシュを検索対象にする
+delete  ;<remote:path> [flags] パス内のファイルを削除
+	--dry-run
+	--rmdirs ;空ディレクトリを削除対象にする
+	--include  ;"<stringArray>" ワイルドカードで抽出
+	--exclude  ;"<stringArray>" ワイルドカードで除外
+	--max-age  ;<duration>[ms|s|m|h|d|w|M|y] 最大期限を指定
+	--min-age  ;<duration>[ms|s|m|h|d|w|M|y] 最小期限を指定
+	--max-size  ;<size>[B|K|M|G|T|P] 最大値を指定
+	--min-size  ;<size>[B|K|M|G|T|P] 最小値を指定
+deletefile  ;<remote:path> [flags] 単一ファイルを削除
+	--dry-run
+gendocs  ;<output_directory> マークダウン形式でヘルプを出力
+gitannex  ;[flags] git-annexと通信
+hashsum  ;<md5|sha1|whirlpool|crc32|sha256> <remote:path> [flags] ハッシュを生成
+help
+link  ;<remote:path> [flags] パブリックリンクを生成
+	--expire ;<duration> 期限を設定
+	--unlink ;リンク解除
+listremotes  ;[<filter>] [flags] リモートリストを取得
+	--description ;<string> 説明文でフィルタ
+	--json ;JSON形式で出力
+	--long ;種類と説明文を追加取得
+	--name ;名前でフィルタ
+	--order-by ;<string> 出力をソート e.g. 'type,name=descending'
+	--source ; <string> ソースでフィルタ e.g. 'file' or 'environment'
+	--type ;<string> 種類でフィルタ
+ls ;<remote:path> [flags] サイズ・パス一覧
+lsl ;<remote:path> [flags] 変更時間・サイズ・パス一覧
+lsf ;<remote:path> [flags] パス一覧
+lsjson ;<remote:path> [flags] JSON形式で出力
+lsd ;<remote:path> [flags] ディレクトリ一覧
+md5sum  ;<remote:path> [flags] md5sumファイルを生成
+mkdir  ;<remote:path> [flags] ディレクトリを作成
+mount  ;<remote:path/to/files> X: --network-mode リモートドライブをマウント
+move  ;<source:path> <dest:path> [flags] ファイルを移動
+	--create-empty-src-dirs 空のディレクトリを作成
+	--delete-empty-src-dirs 空のディレクトリを削除
+	--no-update-dir-modtime ;ディレクトリの更新時間を変更しない
+	--no-update-modtime ;ファイルの更新時間を変更しない
+	--refresh-times ;更新時間を変更する
+moveto  ;<source:path> <dest:path> [flags] 単一ファイルを移動
+	--no-update-dir-modtime ;ディレクトリの更新時間を変更しない
+	--no-update-modtime ;ファイルの更新時間を変更しない
+	--refresh-times ;更新時間を変更する
+ncdu  ;<remote:path> [flags] テキストベースのUIを起動
+obscure  ;<password> パスワードの難読化
+purge  ;<remote:path> [flags] パスと内容をすべて削除
+	--dry-run
+	--interactive
+rc  ;<commands> <parameter> [flags] 実行中のrcサーバにコマンドを送る
+rcat  ;<remote:path> [flags] 標準入力をリモートのファイルにコピー
+	--size ;事前にファイルサイズを割り当て(正確なバイト数を指定)
+rcd   ;<path to files to serve>* [flags] rcサーバを立てる
+rmdir  ;<remote:path> [flags] 単一の空ディレクトリを削除
+rmdirs  ;<remote:path> [flags] パス配下の空ディレクトリを削除
+selfupdate ;[flags] rclone本体を更新
+	--beta ;ベータ版を対象に含む
+	--check ;更新確認
+	--output ;<path> 指定パスにダウンロード
+	--package ;<zip|deb|rpm> ダウンロードするファイルの形式
+	--stable ;安定版のみ対象とする
+	--version ;バージョンを指定して更新
+serve  ;<dlna|docker|ftp|http|nfs|restic|s3|sftp|webdav> [opts] <remote> [flags] プロトコルを介してリモートと接続
+settier  ;<tier> <remote:path> [flags] オブジェクト内のクラス/層を変更
+sha1sum   ;<remote:path> [flags] sha1sumファイルを生成
+size ;パス内の合計サイズと数を取得
+sync  ;<source:path> <dest:path> [flags] パスを同期。宛先のみを変更
+test ;<subcommand> <remote:> テストコマンドを実行
+	changenotify ;変更通知要求をログ出力
+	histogram ;ファイル名をヒストグラム出力
+	info ;[remote:path]+ [flags] その他の制限を検出
+	makefile ;<size> [<file>]+ [flags] 指定したサイズのランダムなファイルを作成
+	makefile ;<dir> [flags] ランダムなファイル階層を作成
+	memory ;<remote:path> [flags] パス内のオブジェクトをメモリに読み込み統計を出力
+touch ;<remote:path> [flags] 新規ファイル作成/更新時刻変更
+	--localtime ;ローカルタイムを使用
+	--no-create ;新規ファイルを作らない
+	--recursive ;再帰的に時刻変更を適用
+	--timestamp ;現在時刻に更新
+tree  ;<remote:path> [flags] ファイルツリー一覧を出力
+version  ;[flags] rcloneバージョンを出力
+	--check ;最新版とバージョンを比較

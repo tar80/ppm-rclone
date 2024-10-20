@@ -1,13 +1,13 @@
 export const langWorkerRclone = {
   en: {
-    couldNotGetPass: 'Could not get decryption pass',
-    inputTitle: 'Enter decrypted password',
+    couldNotGetPass: 'Could not get decryption password',
+    inputTitle: 'Enter decryption password',
     error: 'Cancelled',
     changeModTime: 'Change modification time',
     overCatSize: 'Canceled due to viewing size limit'
   },
   ja: {
-    couldNotGetPass: '暗号化解除パスを取得できませんでした',
+    couldNotGetPass: '複合化パスワードを取得できませんでした',
     inputTitle: '複合化パスワードの入力',
     error: '中止しました',
     changeModTime: '更新時刻の変更',

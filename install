@@ -1,7 +1,7 @@
 ﻿PPM_PLUGIN_NAME=ppm-rclone
 
 #Plugin version
-VERSION=1.2.1
+VERSION=1.2.2
 
 #Requires ppm version
 PPM_VERSION=0.95

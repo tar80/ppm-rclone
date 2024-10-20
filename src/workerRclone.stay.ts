@@ -230,7 +230,7 @@ const ppx_Discard = (): void => {
 const ppx_finally = (): void => {
   showSpinner(false);
   closePPb();
-  debug && PPx.Echo(`[DEBUG] ${PPx.StayMode}: finally`);
+  debug.log(`[DEBUG] ${PPx.StayMode}: finally`);
 };
 
 const statusMsg = (msg: string): void => executeAt(cache.ppcid, `*linemessage !"${msg}`);
